@@ -21,6 +21,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.zIndex
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -28,6 +30,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -162,11 +165,11 @@ fun ShopScreen(
                         showSuggestions = it.isNotBlank()
                     },
                     placeholder = { Text("Buscar marca, produto, categoria...", color = VipTextGray) },
-                    leadingIcon = { Icon(Icons.Default.Search, tint = VipGold) },
+                    leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = "Buscar", tint = VipGold) },
                     trailingIcon = {
                         if (searchQuery.isNotEmpty()) {
                             IconButton(onClick = { viewModel.setSearchQuery("") }) {
-                                Icon(Icons.Default.Close, tint = VipTextGray)
+                                Icon(imageVector = Icons.Default.Close, contentDescription = "Limpar", tint = VipTextGray)
                             }
                         }
                     },
@@ -1073,7 +1076,7 @@ fun CartCheckoutDialog(
                                         color = if (isSelected) VipGold.copy(alpha = 0.1f) else VipCardGray,
                                         shape = RoundedCornerShape(8.dp)
                                     ) {
-                                        Text(method, color = if (isSelected) VipGold else VipWhite, fontSize = 11.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(vertical = 8.dp), align = Alignment.CenterHorizontally)
+                                        Text(method, color = if (isSelected) VipGold else VipWhite, fontSize = 11.sp, fontWeight = FontWeight.Bold, modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp), textAlign = TextAlign.Center)
                                     }
                                 }
                             }
@@ -1184,7 +1187,7 @@ fun CheckoutSuccessDialog(
                     text = "Seu pedido de R$ ${String.format("%.2f", amount)} foi processado com sucesso.",
                     color = VipTextGray,
                     fontSize = 13.sp,
-                    align = Alignment.CenterHorizontally
+                    textAlign = TextAlign.Center
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))

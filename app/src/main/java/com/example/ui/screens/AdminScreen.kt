@@ -5,6 +5,7 @@ import androidx.compose.animation.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -192,7 +193,7 @@ fun CrmSubTab(userProfile: com.example.data.UserProfile, viewModel: MainViewMode
         value = searchQueryCrm,
         onValueChange = { searchQueryCrm = it },
         placeholder = { Text("Filtrar por nome, cidade ou nível...", color = VipTextGray, fontSize = 12.sp) },
-        leadingIcon = { Icon(Icons.Default.Search, tint = VipGold, modifier = Modifier.size(16.dp)) },
+        leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = "Search", tint = VipGold, modifier = Modifier.size(16.dp)) },
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
         colors = OutlinedTextFieldDefaults.colors(

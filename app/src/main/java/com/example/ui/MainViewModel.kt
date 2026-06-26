@@ -232,6 +232,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun getCommentsForPost(postId: Int): Flow<List<Comment>> {
+        return repository.getCommentsForPost(postId)
+    }
+
     fun addComment(postId: Int, content: String) {
         viewModelScope.launch {
             repository.addComment(
@@ -367,7 +371,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
             if (newProductsList.isNotEmpty()) {
                 viewModelScope.launch {
-                    repository.db.productDao().insertProducts(newProductsList)
+                    repository.insertProducts(newProductsList)
                     repository.addNotification(
                         "📥 Importação concluída!",
                         "Foram cadastrados com sucesso $importedCount produtos via arquivo $format."

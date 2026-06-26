@@ -30,6 +30,10 @@ class DatabaseRepository(private val db: AppDatabase) {
         db.productDao().insertProduct(product)
     }
 
+    suspend fun insertProducts(products: List<Product>) = withContext(Dispatchers.IO) {
+        db.productDao().insertProducts(products)
+    }
+
     suspend fun deleteProduct(id: Int) = withContext(Dispatchers.IO) {
         db.productDao().deleteProduct(id)
     }
